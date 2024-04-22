@@ -115,7 +115,6 @@ alias spotify='spotify_player'
 alias j='just'
 alias ls='eza -l --icons=always --no-permissions --no-user -h -a'
 
-export OPENAI_API_KEY=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
 
 alias m2pdf="md_folder_to_pdf.sh"
 alias j2src="jpg_to_src.sh"
@@ -123,6 +122,7 @@ alias rvim="start_neovim_remote.sh"
 alias compressvideo="compress_video.sh"
 alias rscript="cargo +nightly -Zscript"
 alias svim="NVIM_APPNAME=svim nvim"
+alias avim="NVIM_APPNAME=astronvim_v4 nvim"
 
 # Renames tmux windows based on run command with just (command runner in rust), ignores when in neovim, and ignores when using flags
 # Define the function `preexec`

@@ -1,11 +1,13 @@
 return {
   diagnostics = {
+    -- DIAGNOSTICS DONE
     virtual_text = false,
     virtual_lines = false,
     update_in_insert = false,
   },
   options = {
     opt = {
+      -- DONE
       showtabline = 1,
     },
   },
@@ -37,10 +39,12 @@ return {
         end,
         desc = "Close buffer",
       },
+      -- DONE
       ["<leader>le"] = {
         function() require("lsp_lines").toggle() end,
         desc = "Expand diagnostics",
       },
+      -- Need to move to actual plugin files
       -- Mardown preview
       ["<leader>m"] = { name = " Markdown" },
       ["<leader>mp"] = { "<cmd>MarkdownPreview<cr>", desc = "Markdown preview" },
@@ -49,6 +53,7 @@ return {
       ["<leader>mi"] = { "<cmd>PasteImg<cr>", desc = "Markdown paste image" },
     },
   },
+  -- Skip?
   lsp = {
     servers = { "rust_analyzer" },
     config = {
@@ -73,8 +78,10 @@ return {
       },
     },
   },
+  -- COLORSCHEME DONE
   colorscheme = "catppuccin-mocha",
   plugins = {
+    -- DONE
     {
       "hrsh7th/nvim-cmp",
       dependencies = {
@@ -150,6 +157,7 @@ return {
         })
       end,
     },
+    -- DONE
     {
       "goolord/alpha-nvim",
       opts = function(_, opts) -- override the options using lazy.nvim
@@ -163,6 +171,7 @@ return {
         }
       end,
     },
+    -- DONE
     {
       "nvim-telescope/telescope.nvim",
       opts = function(_, opts) -- override the options using lazy.nvim
@@ -182,6 +191,7 @@ return {
       end,
     },
     {
+      -- SKIP
       -- Running a fork that fixes https://github.com/ekickx/clipboard-image.nvim/pull/48#issuecomment-1589760763
       "postfen/clipboard-image.nvim",
       ft = "markdown",
@@ -198,6 +208,7 @@ return {
       end,
     },
     -- Originally set to BufRead event but started breaking, changed to VeryLazy
+    -- DONE
     {
       "jinh0/eyeliner.nvim",
       event = "VeryLazy",
@@ -207,7 +218,9 @@ return {
       },
     },
     "AstroNvim/astrocommunity",
+    -- DONE
     { import = "astrocommunity.colorscheme.catppuccin" },
+    -- DONE
     {
       "catppuccin/nvim",
       name = "catppuccin",
@@ -223,6 +236,7 @@ return {
         }
       end,
     },
+    -- Python and Rust Done!
     { import = "astrocommunity.pack.python" },
     { import = "astrocommunity.pack.rust" },
     {
@@ -258,6 +272,7 @@ return {
         },
       },
     },
+    -- DONE
     {
       "Saecki/crates.nvim",
       opts = {
@@ -288,6 +303,7 @@ return {
         end,
       },
     },
+    -- ALL THESE DONE
     { import = "astrocommunity.pack.lua" },
     { import = "astrocommunity.pack.typescript" },
     { import = "astrocommunity.pack.svelte" },
@@ -300,6 +316,7 @@ return {
     { import = "astrocommunity.motion.mini-move" },
     { import = "astrocommunity.file-explorer.oil-nvim" },
     { import = "astrocommunity.utility.noice-nvim" },
+    -- DONE
     {
       "folke/noice.nvim",
       event = "VeryLazy",
@@ -352,6 +369,7 @@ return {
       end,
       init = function() vim.g.lsp_handlers_enabled = false end,
     },
+    -- Doesn't seem to be needed anymore?
     {
       "ray-x/lsp_signature.nvim",
       event = "BufRead",
@@ -363,6 +381,7 @@ return {
         }
       end,
     },
+    -- DONE
     {
       -- https://code.mehalter.com/AstroNvim_user/~files/master/plugins/heirline.lua
       "rebelot/heirline.nvim",
@@ -436,6 +455,7 @@ return {
       end,
     },
     {
+      -- DOESNT SEEM NEEDED ANYMORE
       -- Temporary fix for closing brackets in JXS ex: <Component /> accidentally becomes <Component /Component>
       "nvim-treesitter/nvim-treesitter",
       opts = function(_, opts)
@@ -446,7 +466,9 @@ return {
         opts.autotag.enable_close_on_slash = false
       end,
     },
+    -- DONE
     { import = "astrocommunity.scrolling.neoscroll-nvim" },
+    -- DONE
     {
       -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
       dir = "~/projects/lsp_lines",
@@ -454,6 +476,7 @@ return {
       opts = {},
     },
   },
+  -- ALL DONE
   -- This function is run last
   -- good place to configure mappings and vim options
   polish = function()

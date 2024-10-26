@@ -22,9 +22,13 @@ local pack = {
             ["rust-analyzer"] = {
               check = {
                 command = "clippy",
-                extraArgs = {
-                  "--no-deps",
-                },
+                -- extraArgs = {
+                --   "--no-deps",
+                -- },
+              },
+              cargo = {
+                extraEnv = { CARGO_PROFILE_RUST_ANALYZER_INHERITS = "dev" },
+                extraArgs = { "--profile", "rust-analyzer" },
               },
             },
           },
@@ -46,39 +50,62 @@ local pack = {
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "codelldb" })
     end,
   },
-  {
-    "Saecki/crates.nvim",
-    lazy = true,
-    dependencies = {
-      "AstroNvim/astrocore",
-      opts = {
-        autocmds = {
-          CmpSourceCargo = {
-            {
-              event = "BufRead",
-              desc = "Load crates.nvim into Cargo buffers",
-              pattern = "Cargo.toml",
-              callback = function()
-                require("cmp").setup.buffer { sources = { { name = "crates" } } }
-                require "crates"
-              end,
-            },
+  "Saecki/crates.nvim",
+  lazy = true,
+  dependencies = {
+    "AstroNvim/astrocore",
+    opts = {
+      autocmds = {
+        CmpSourceCargo = {
+          {
+            event = "BufRead",
+            desc = "Load crates.nvim into Cargo buffers",
+            pattern = "Cargo.toml",
+            callback = function()
+              require("cmp").setup.buffer { sources = { { name = "crates" } } }
+              require "crates"
+            end,
           },
         },
       },
     },
-    opts = {
-      completion = {
-        cmp = { enabled = true },
-        crates = {
-          enabled = true,
-        },
-      },
-      null_ls = {
+  },
+  opts = {
+    popup = {
+      autofocus = true,
+    },
+    completion = {
+      cmp = { enabled = true },
+      crates = {
         enabled = true,
-        name = "crates.nvim",
       },
     },
+    null_ls = {
+      enabled = true,
+      name = "crates.nvim",
+    },
+    on_attach = function(bufnr)
+      local crates = require "crates"
+      local utils = require "astrocore"
+      utils.set_mappings({
+        n = {
+          ["<leader>r"] = { name = "+ Crates" },
+          ["<leader>rt"] = { crates.toggle, desc = "Toggle crates" },
+          ["<leader>rr"] = { crates.reload, desc = "Reload crates" },
+          ["<leader>rv"] = { crates.show_versions_popup, desc = "Show crate versions popup" },
+          ["<leader>rf"] = { crates.show_features_popup, desc = "Show crate features popup" },
+          ["<leader>rd"] = { crates.show_dependencies_popup, desc = "Show crate dependencies popup" },
+          ["<leader>ru"] = { crates.update_crate, desc = "Update crate" },
+          ["<leader>ra"] = { crates.update_all_crates, desc = "Update all crates" },
+          ["<leader>rU"] = { crates.upgrade_crate, desc = "Upgrade crate" },
+          ["<leader>rA"] = { crates.upgrade_all_crates, desc = "Upgrade all crates" },
+          ["<leader>rH"] = { crates.open_homepage, desc = "Open crate homepage" },
+          ["<leader>rR"] = { crates.open_repository, desc = "Open crate repository" },
+          ["<leader>rD"] = { crates.open_documentation, desc = "Open crate documentation" },
+          ["<leader>rC"] = { crates.open_crates_io, desc = "Open crates.io" },
+        },
+      }, { buffer = bufnr })
+    end,
   },
   {
     "nvim-neotest/neotest",
@@ -147,7 +174,16 @@ if vim.fn.has "nvim-0.10" == 1 then
         end,
       }
       local final_server = require("astrocore").extend_tbl(astrolsp_opts, server)
-      return { server = final_server, dap = { adapter = adapter }, tools = { enable_clippy = false } }
+      return {
+        server = final_server,
+        dap = { adapter = adapter },
+        tools = {
+          enable_clippy = false,
+          float_win_config = {
+            border = "rounded",
+          },
+        },
+      }
     end,
     config = function(_, opts) vim.g.rustaceanvim = require("astrocore").extend_tbl(opts, vim.g.rustaceanvim) end,
   })

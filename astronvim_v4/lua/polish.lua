@@ -14,3 +14,22 @@ vim.api.nvim_set_keymap("n", "0", "^", { noremap = true })
 -- Sets j to gj and k to gk, ensures corrent line jumping with wordwrap on
 vim.api.nvim_set_keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
 vim.api.nvim_set_keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
+
+-- Autocommand to start GDScript LSP server in Godot projects
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    local root_patterns = { "project.godot", ".godot" }
+    local current_dir = vim.fn.getcwd()
+
+    for _, pattern in ipairs(root_patterns) do
+      if vim.fn.findfile(pattern, current_dir .. ";") ~= "" then
+        -- We're in a Godot project, start the LSP server
+        local pipe = "./godothost"
+        vim.api.nvim_command('echo serverstart("' .. pipe .. '")')
+        vim.notify("Listening for Godot LSP...", vim.log.levels.INFO)
+        break
+      end
+    end
+  end,
+  group = vim.api.nvim_create_augroup("GDScriptLSPAutostart", { clear = true }),
+})

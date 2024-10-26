@@ -11,6 +11,7 @@ return {
   { import = "astrocommunity.pack.python" },
   -- { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.typescript" },
+  -- { import = "astrocommunity.pack.godot" },
   { import = "astrocommunity.pack.svelte" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.markdown" },
@@ -24,6 +25,7 @@ return {
   { import = "astrocommunity.file-explorer.oil-nvim" },
   { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.scrolling.neoscroll-nvim" },
+  { import = "astrocommunity.recipes.telescope-lsp-mappings" },
   -- { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
 
   -- import/override with your plugins folder

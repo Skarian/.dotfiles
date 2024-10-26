@@ -15,6 +15,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$HOME/scripts:$PATH"
 export EMSDK_QUIET=1
 export MAKE=/opt/homebrew/bin/gmake
+export PATH="/Applications/Godot.app/Contents/MacOS:$PATH"
 
 # Tool initialization
 eval "$(starship init zsh)"
@@ -66,3 +67,4 @@ function preexec() {
 
 # Startup
 macchina
+compdef _flyctl fly

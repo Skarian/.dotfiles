@@ -72,7 +72,10 @@ return {
           compare.order,
         },
       },
-      experimental = { ghost_text = true },
+      -- Disabling on 10/25/2024 due to:
+      -- https://github.com/hrsh7th/nvim-cmp/issues/1863
+      -- https://github.com/hrsh7th/nvim-cmp/issues/1735
+      experimental = { ghost_text = false },
     })
   end,
 }

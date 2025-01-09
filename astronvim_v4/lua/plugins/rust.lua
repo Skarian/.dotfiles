@@ -50,62 +50,121 @@ local pack = {
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "codelldb" })
     end,
   },
-  "Saecki/crates.nvim",
-  lazy = true,
-  dependencies = {
-    "AstroNvim/astrocore",
-    opts = {
-      autocmds = {
-        CmpSourceCargo = {
-          {
-            event = "BufRead",
-            desc = "Load crates.nvim into Cargo buffers",
-            pattern = "Cargo.toml",
-            callback = function()
-              require("cmp").setup.buffer { sources = { { name = "crates" } } }
-              require "crates"
-            end,
+  -- "Saecki/crates.nvim",
+  -- lazy = true,
+  -- dependencies = {
+  --   "AstroNvim/astrocore",
+  --   opts = {
+  --     autocmds = {
+  --       CmpSourceCargo = {
+  --         {
+  --           event = "BufRead",
+  --           desc = "Load crates.nvim into Cargo buffers",
+  --           pattern = "Cargo.toml",
+  --           callback = function()
+  --             require("cmp").setup.buffer { sources = { { name = "crates" } } }
+  --             require "crates"
+  --           end,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
+  -- opts = {
+  --   popup = {
+  --     autofocus = true,
+  --   },
+  --   completion = {
+  --     cmp = { enabled = true },
+  --     crates = {
+  --       enabled = true,
+  --     },
+  --   },
+  --   null_ls = {
+  --     enabled = true,
+  --     name = "crates.nvim",
+  --   },
+  --   on_attach = function(bufnr)
+  --     local crates = require "crates"
+  --     local utils = require "astrocore"
+  --     utils.set_mappings({
+  --       n = {
+  --         ["<leader>r"] = { name = "+ Crates" },
+  --         ["<leader>rt"] = { crates.toggle, desc = "Toggle crates" },
+  --         ["<leader>rr"] = { crates.reload, desc = "Reload crates" },
+  --         ["<leader>rv"] = { crates.show_versions_popup, desc = "Show crate versions popup" },
+  --         ["<leader>rf"] = { crates.show_features_popup, desc = "Show crate features popup" },
+  --         ["<leader>rd"] = { crates.show_dependencies_popup, desc = "Show crate dependencies popup" },
+  --         ["<leader>ru"] = { crates.update_crate, desc = "Update crate" },
+  --         ["<leader>ra"] = { crates.update_all_crates, desc = "Update all crates" },
+  --         ["<leader>rU"] = { crates.upgrade_crate, desc = "Upgrade crate" },
+  --         ["<leader>rA"] = { crates.upgrade_all_crates, desc = "Upgrade all crates" },
+  --         ["<leader>rH"] = { crates.open_homepage, desc = "Open crate homepage" },
+  --         ["<leader>rR"] = { crates.open_repository, desc = "Open crate repository" },
+  --         ["<leader>rD"] = { crates.open_documentation, desc = "Open crate documentation" },
+  --         ["<leader>rC"] = { crates.open_crates_io, desc = "Open crates.io" },
+  --       },
+  --     }, { buffer = bufnr })
+  --   end,
+  -- },
+  {
+    "Saecki/crates.nvim",
+    lazy = true,
+    dependencies = {
+      "AstroNvim/astrocore",
+      opts = {
+        autocmds = {
+          CmpSourceCargo = {
+            {
+              event = "BufRead",
+              desc = "Load crates.nvim into Cargo buffers",
+              pattern = "Cargo.toml",
+              callback = function()
+                require("cmp").setup.buffer { sources = { { name = "crates" } } }
+                require "crates"
+              end,
+            },
           },
         },
       },
     },
-  },
-  opts = {
-    popup = {
-      autofocus = true,
-    },
-    completion = {
-      cmp = { enabled = true },
-      crates = {
-        enabled = true,
+    opts = {
+      popup = {
+        autofocus = true,
       },
-    },
-    null_ls = {
-      enabled = true,
-      name = "crates.nvim",
-    },
-    on_attach = function(bufnr)
-      local crates = require "crates"
-      local utils = require "astrocore"
-      utils.set_mappings({
-        n = {
-          ["<leader>r"] = { name = "+ Crates" },
-          ["<leader>rt"] = { crates.toggle, desc = "Toggle crates" },
-          ["<leader>rr"] = { crates.reload, desc = "Reload crates" },
-          ["<leader>rv"] = { crates.show_versions_popup, desc = "Show crate versions popup" },
-          ["<leader>rf"] = { crates.show_features_popup, desc = "Show crate features popup" },
-          ["<leader>rd"] = { crates.show_dependencies_popup, desc = "Show crate dependencies popup" },
-          ["<leader>ru"] = { crates.update_crate, desc = "Update crate" },
-          ["<leader>ra"] = { crates.update_all_crates, desc = "Update all crates" },
-          ["<leader>rU"] = { crates.upgrade_crate, desc = "Upgrade crate" },
-          ["<leader>rA"] = { crates.upgrade_all_crates, desc = "Upgrade all crates" },
-          ["<leader>rH"] = { crates.open_homepage, desc = "Open crate homepage" },
-          ["<leader>rR"] = { crates.open_repository, desc = "Open crate repository" },
-          ["<leader>rD"] = { crates.open_documentation, desc = "Open crate documentation" },
-          ["<leader>rC"] = { crates.open_crates_io, desc = "Open crates.io" },
+      completion = {
+        cmp = { enabled = true },
+        crates = {
+          enabled = true,
         },
-      }, { buffer = bufnr })
-    end,
+      },
+      null_ls = {
+        enabled = true,
+        name = "crates.nvim",
+      },
+      on_attach = function(bufnr)
+        local crates = require "crates"
+        local utils = require "astrocore"
+        utils.set_mappings({
+          n = {
+            ["<leader>r"] = { name = "+ Crates" },
+            ["<leader>rt"] = { crates.toggle, desc = "Toggle crates" },
+            ["<leader>rr"] = { crates.reload, desc = "Reload crates" },
+            ["<leader>rv"] = { crates.show_versions_popup, desc = "Show crate versions popup" },
+            ["<leader>rf"] = { crates.show_features_popup, desc = "Show crate features popup" },
+            ["<leader>rd"] = { crates.show_dependencies_popup, desc = "Show crate dependencies popup" },
+            ["<leader>ru"] = { crates.update_crate, desc = "Update crate" },
+            ["<leader>ra"] = { crates.update_all_crates, desc = "Update all crates" },
+            ["<leader>rU"] = { crates.upgrade_crate, desc = "Upgrade crate" },
+            ["<leader>rA"] = { crates.upgrade_all_crates, desc = "Upgrade all crates" },
+            ["<leader>rH"] = { crates.open_homepage, desc = "Open crate homepage" },
+            ["<leader>rR"] = { crates.open_repository, desc = "Open crate repository" },
+            ["<leader>rD"] = { crates.open_documentation, desc = "Open crate documentation" },
+            ["<leader>rC"] = { crates.open_crates_io, desc = "Open crates.io" },
+          },
+        }, { buffer = bufnr })
+      end,
+    },
   },
   {
     "nvim-neotest/neotest",

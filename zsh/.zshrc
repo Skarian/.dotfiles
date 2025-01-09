@@ -19,7 +19,6 @@ export PATH="/Applications/Godot.app/Contents/MacOS:$PATH"
 
 # Tool initialization
 eval "$(starship init zsh)"
-source "$HOME/projects/emsdk/emsdk_env.sh"
 
 # Terminal Integrations
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

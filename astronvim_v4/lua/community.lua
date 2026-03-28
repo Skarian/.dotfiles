@@ -16,6 +16,8 @@ return {
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.just" },
+  { import = "astrocommunity.pack.terraform" },
+  { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },

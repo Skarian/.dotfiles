@@ -35,7 +35,9 @@ alias compress_videos="compress_videos.sh"
 alias compress_image="compress_image.sh"
 alias rscript="cargo +nightly -Zscript"
 alias download-urls="/Users/nskaria/projects/nvme-downloader/download-urls.js"
-alias nvim="NVIM_APPNAME=astronvim_v4 nvim"
+alias nvim='NVIM_APPNAME=astronvim_v6 /Users/nskaria/.local/neovim/0.11.6/bin/nvim'
+alias nvim10='NVIM_APPNAME=astronvim_v4 /opt/homebrew/bin/nvim'
+alias nvim11='NVIM_APPNAME=astronvim_v6 /Users/nskaria/.local/neovim/0.11.6/bin/nvim'
 alias make='/opt/homebrew/bin/gmake' # More updated make from brew
 
 # [Custom Function]: Renames tmux windows based on run command with just (command runner in rust), ignores when in neovim, and ignores when using flags

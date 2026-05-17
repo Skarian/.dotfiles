@@ -144,6 +144,7 @@ key = "L"
 mods = "Alt"
 
 [terminal]
+osc52 = "CopyPaste"
 
 [[colors.indexed_colors]]
 color = "0xF8BD96"

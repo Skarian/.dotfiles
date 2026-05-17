@@ -30,8 +30,11 @@ alias ls='eza -l --icons=always --no-permissions --no-user -h -a'
 alias m2pdf="md_folder_to_pdf.sh"
 alias j2src="jpg_to_src.sh"
 alias rvim="start_neovim_remote.sh"
-alias compressvideo="compress_video.sh"
+alias compress_video="compress_video.sh"
+alias compress_videos="compress_videos.sh"
+alias compress_image="compress_image.sh"
 alias rscript="cargo +nightly -Zscript"
+alias download-urls="/Users/nskaria/projects/nvme-downloader/download-urls.js"
 alias nvim="NVIM_APPNAME=astronvim_v4 nvim"
 alias make='/opt/homebrew/bin/gmake' # More updated make from brew
 
@@ -64,6 +67,59 @@ function preexec() {
     fi
 }
 
+# For ESP32 - Rust
+# source $HOME/export-esp.sh
+
+# source $HOME/esp/esp-idf/export.sh
+# For primary esp32 https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/linux-macos-setup.html#get-started-prerequisites
+alias get_idf='. $HOME/esp/esp-idf/export.sh'
+
+alias eml2md='/Users/nskaria/projects/eml2md/target/release/eml2md'
+
+
 # Startup
 macchina
 compdef _flyctl fly
+eval "$(direnv hook zsh)"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+# export NDK_HOME="/Users/nskaria/Library/Android/sdk/ndk/29.0.14206865"
+# export PATH="$NDK_HOME/toolchains/llvm/prebuilt/darwin-x86_64/bin:$PATH"
+
+# Android SDK
+export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+export ANDROID_HOME="$ANDROID_SDK_ROOT" # legacy compatibility for some tools
+
+# Android Studio bundled JDK
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+
+# Prefer these binaries first
+export PATH="$JAVA_HOME/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/emulator:$PATH"
+
+
+# Created by `pipx` on 2026-02-13 16:53:50
+export PATH="$PATH:/Users/nskaria/.local/bin"
+
+export CLOUDSDK_PYTHON="/opt/homebrew/bin/python3.10"
+export PATH=/opt/homebrew/share/google-cloud-sdk/bin:"$PATH"
+
+export GCP_PROJECT_ID="vr2xr"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/nskaria/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/nskaria/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/nskaria/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/nskaria/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+export VR2XR_UPLOAD_STORE_FILE="$HOME/googleplay/keystore/vr2xr-upload.jks"
+export VR2XR_UPLOAD_KEY_ALIAS="vr2xr-upload"
+export VR2XR_VERSION_NAME="0.0.1"
+export VR2XR_VERSION_CODE="1"
+
+if [ -f "$HOME/.zsh/secrets.zsh" ]; then
+    source "$HOME/.zsh/secrets.zsh"
+fi
+
+alias codex-notify='sh /Users/nskaria/.codex/notifications/codex-bell.sh'
